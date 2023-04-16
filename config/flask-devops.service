@@ -1,0 +1,13 @@
+[Unit]
+Description=Flask Devops service
+
+[Service]
+User=user
+WorkingDirectory=/home/user/flask-devops
+ExecStart=/home/user/flask-devops/venv/bin/python3 app.py
+Restart=always
+StandardOutput=append:/var/log/flask-devops/std_out.log
+StandardError=append:/var/log/flask-devops/std_err.log
+
+[Install]
+WantedBy=multi-user.target
