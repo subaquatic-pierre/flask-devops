@@ -23,17 +23,16 @@ def rebuild():
 
     # Set project envs for script
     os.environ["PROJECT_DIR"] = data.get("projectDir")
-    os.environ["ROOT_PASSWORD"] = "supersecretpassword"
-
-    print(data)
+    root_password = os.environ.get("ROOT_PASSWORD")
+    os.environ["ROOT_PASSWORD"] = root_password
 
     secret = data.get("password")
     project_dir = data.get("projectDir")
     build_script = data.get("buildScript")
 
-    password = os.environ.get("API_PASSWORD")
+    api_password = os.environ.get("API_PASSWORD")
 
-    if secret != password:
+    if secret != api_password:
         return jsonify({"stderr": "Incorrect password", "stdout": ""})
 
     file_path = Path(project_dir, build_script)
