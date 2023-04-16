@@ -38,14 +38,13 @@ def rebuild():
 
     file_path = Path(project_dir, build_script)
 
-    # output = subprocess.run([file_path.absolute()], capture_output=True)
-    # stdout = output.stdout.decode("utf-8")
-    # stderr = output.stderr.decode("utf-8")
-    # print(f"stdout: {stdout} \n stderr: {stderr}")
-    # return jsonify({"stderr": stderr, "stdout": stdout})
-
+    output = subprocess.run([file_path.absolute()], capture_output=True)
+    stdout = output.stdout.decode("utf-8")
+    stderr = output.stderr.decode("utf-8")
+    print(f"stdout: {stdout} \n stderr: {stderr}")
     sleep(2)
-    return jsonify({"stderr": "Complete", "stdout": "No Error"})
+
+    return jsonify({"stderr": stderr, "stdout": stdout})
 
 
 if __name__ == "__main__":
